@@ -31,10 +31,10 @@ for file in dirs:
     #print(file_name)
     df=pd.read_csv(file_name,header=None)
     df=df.dropna(axis='columns',how='all') # Drops columns that contain all nan values
-    df_list.append(df)
+    #df_list.append(df)
     #df_list.append(df)
     # =============================================================================
-    location=df.apply(lambda col: col.astype(str).str.contains(attempt).any(), axis=1)
+    location=df.apply(lambda col: col.astype(str).str.contains(date_regex).any(), axis=1)
     # df.apply(applies function, to row(axis=0) or column (axis=1) assigned)
     # Lambda function is a nameless function that requires an argument followed by a colon
     # Probably it is a ndarray, an N-dimensional array type which describes a collection of “items” of the same type
@@ -44,11 +44,11 @@ for file in dirs:
     
     # =============================================================================
     # THIS SECTION BELOW IS FOR GETTING ONLY THE DATE, DESCRIPTION, AND AMOUNT DATAFRAMES
-    date_column=dates_as_first_row.filter(regex=attempt,axis='columns')
+    date_column=dates_as_first_row.filter(regex=date_regex,axis='columns')
     for date in dates_as_first_row:
         cool=dates_as_first_row[date]
-        asian=cool.str.contains(attempt)
-    a=asian.index[asian]
+        boolean_series=cool.str.contains(date_regex)
+    a=boolean_series.index[boolean_series]
     interesting=pd.DataFrame(date)
 #    print(type(WOAH))
     #print(type(date_as_first_row))
