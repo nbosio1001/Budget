@@ -1,0 +1,1 @@
+The goal of this project is to visualize credit and debt card expenses on a monthly basis to better inform me when creating a monthly budget. Multiple CSV files with various formatting are read into a pandas dataframe. The data is formatted using functional programming and then visualized as a pie chart using matplotlib.
